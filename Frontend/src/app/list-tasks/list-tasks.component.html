@@ -1,0 +1,29 @@
+<div class="container">
+
+    <h2>List of tasks...</h2>
+    <p></p>
+
+    <table class="table table-striped">
+        
+        <thead>
+            <th>Done</th>
+            <th>Task</th>
+            <th>Action</th>
+        </thead>
+
+        <p></p>
+
+        <tbody>
+            <tr *ngFor="let t of tasks">
+                <td>
+                    <input name="cb" type="checkbox" id="cb">    
+                </td>
+                <td>{{ t.content }}</td>
+                <td>
+                    <button class="btn btn-warning"><a [routerLink]="['/update-task/',t.id]">Edit</a></button>
+                    <button (click)="deleteTask(t.id)" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
