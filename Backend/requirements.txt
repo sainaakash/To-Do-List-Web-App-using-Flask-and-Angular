@@ -1,2 +1,4 @@
 flask
-SQLAlchemy
+flask-sqlalchemy
+flask-cors
+flask-restful
