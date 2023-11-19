@@ -12,5 +12,3 @@ To create a virtual environment:
 ```
 conda create -p venv python==3.10 -y
 ```
-
-![Demo Video](https://drive.google.com/file/d/1f-DbF9okne6vR0aBJUrmlLcKQzcjsJbO/view?usp=sharing)
