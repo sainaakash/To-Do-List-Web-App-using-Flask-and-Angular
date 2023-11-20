@@ -1,17 +1,25 @@
 <div class="container extra_container">
-    <p></p>
     <div class="row">
-        <div class="md-col-12"><h2>Add Task...</h2></div>
-    </div>
-    
+        <p></p>
+        <div class="col">
+            <h2 class="">Add tasks...</h2>
+        </div>
+        <div class="col"></div>
+        <div class="col">
+            <button class="btn btn-primary"><a [routerLink]="['/list-tasks/']">List of tasks</a></button>
+        </div>
+</div>
+
+<div class="container">
+
     <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
         <div class="row">
             <div class="md-col-6">Content</div>
             <div class="md-col-6"><input type="text" class="form-control" name="content" formControlName="content"></div>
         </div>
-
+        <p></p>
         <div class="row">
-            <div class="md-col-12"><input type="submit" class="btn btn-warning" name="submit"></div>
+            <div class="md-col-4"><input type="submit" class="btn btn-warning" name="submit" size="10"></div>
         </div>
     </form>  
 </div>  

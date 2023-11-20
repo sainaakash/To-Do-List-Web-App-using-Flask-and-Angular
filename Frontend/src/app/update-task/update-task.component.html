@@ -1,8 +1,16 @@
 <div class="container extra_container">
-    <p></p>
     <div class="row">
-        <div class="md-col-12"><h2>Update Task...</h2></div>
-    </div>
+        <p></p>
+        <div class="col">
+            <h2>Update Task...</h2>
+        </div>
+        <div class="col"></div>
+        <div class="col">
+            <button class="btn btn-primary"><a [routerLink]="['/list-tasks/']">Back</a></button>
+        </div>
+</div>
+
+<div class="container">
     <form [formGroup]="angForm" (ngSubmit)="editData(angForm)" autocomplete="off">
         <input type="hidden" name="id" formControlName="id">
         <div class="row">
