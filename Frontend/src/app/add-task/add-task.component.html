@@ -6,7 +6,9 @@
         </div>
         <div class="col"></div>
         <div class="col">
-            <button class="btn btn-primary"><a [routerLink]="['/list-tasks/']">List of tasks</a></button>
+            <div class="container text-end">
+                <button class="btn btn-primary"><a [routerLink]="['/list-tasks/']">List of tasks</a></button>
+            </div> 
         </div>
 </div>
 
@@ -14,12 +16,12 @@
 
     <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
         <div class="row">
-            <div class="md-col-6">Content</div>
+            <div class="md-col-6 text-center" id="cnt">Content</div>
             <div class="md-col-6"><input type="text" class="form-control" name="content" formControlName="content"></div>
         </div>
-        <p></p>
+        
         <div class="row">
-            <div class="md-col-4"><input type="submit" class="btn btn-warning" name="submit" size="10"></div>
+            <div class="md-col-4 text-center"><input type="submit" class="btn btn-warning" name="submit" size="10"></div>
         </div>
     </form>  
 </div>  

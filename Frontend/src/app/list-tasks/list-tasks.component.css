@@ -6,4 +6,11 @@ a:link, a:visited {
   }
 
   
-  
+  .btn-margin {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+#thead {
+  font-weight: bold;
+}

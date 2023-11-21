@@ -4,3 +4,8 @@ a:link, a:visited {
     text-decoration: none;
     display: inline-block;
   }
+
+
+  #cnt {
+    font-weight: bold;
+   }
