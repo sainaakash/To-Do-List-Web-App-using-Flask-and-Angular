@@ -16,7 +16,7 @@
 <div class="container">
 
     <div class="row p-3 border bg-light" id="thead">
-        <div class="col-md-4">Product</div>
+        <div class="col-md-4">Task No.</div>
         <div class="col-md-4">Tasks</div>
         <div class="col-md-4 text-center">Actions</div>
     </div>
@@ -27,7 +27,7 @@
             <div class="col-md-1 p-3 border bg-light">{{ t.id }}</div>
             <div class="col-md-7 p-3 border bg-light">{{ t.content }}</div>
             <div class="col-md-4 p-3 border bg-light text-center">
-                <button class="btn btn-primary btn-margin">Done</button>
+                
                 <button class="btn btn-warning btn-margin"><a [routerLink]="['/update-task/',t.id]">Edit</a></button>
                 <button (click)="deleteTask(t.id)" class="btn btn-danger btn-margin">Delete</button>
             </div>
