@@ -1,14 +1,14 @@
-from flask import Flask, request, render_template
-from flask_restful import Api, Resource, reqparse
+from flask import Flask, request, redirect
+from flask_restful import Api, Resource
 from models import TasksModel, db
 from flask_cors import CORS, cross_origin
+from datetime import datetime
 
 app = Flask(__name__)
-
 CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///to-do.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATION'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.app_context().push()
 
 api = Api(app)
@@ -20,51 +20,66 @@ with app.app_context():
 class TasksView(Resource):
     def get(self):
         tasks = TasksModel.query.all()
-        return {'Tasks': list(x.json() for x in tasks)}
+        return {'Tasks': [x.json() for x in tasks]}
 
     def post(self):
         data = request.get_json()
-        new_tasks = TasksModel(data['content'])
+        
+        
+        due_date_str = data.get('dueDate')
+        due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date() if due_date_str else None
 
-        db.session.add(new_tasks)
+        new_task = TasksModel(content=data['content'], dueDate=due_date)
+
+        db.session.add(new_task)
         db.session.commit()
-        db.session.flush()
 
-        return new_tasks.json(), 201
-
+        return new_task.json(), 201
 
 class SingleTaskView(Resource):
     def get(self, id):
-        task = TasksModel.query.filter_by(id=id).first()
+        task = TasksModel.query.get(id)
 
         if task:
             return task.json()
 
-        return {'message':'Task not found'}, 404
+        return {'message': 'Task not found'}, 404
 
     def delete(self, id):
-        task = TasksModel.query.filter_by(id=id).first()
+        task = TasksModel.query.get(id)
 
         if task:
             db.session.delete(task)
             db.session.commit()
-            return {'message':'Deleted'}
+            return {'message': 'Deleted'}
         else:
-            return {'message':'Task not found'}, 404
+            return {'message': 'Task not found'}, 404
 
     def put(self, id):
         data = request.get_json()
-        task = TasksModel.query.filter_by(id=id).first()
+        task = TasksModel.query.get(id)
 
         if task:
             task.content = data['content']
+            task.dueDate = datetime.strptime(data.get('dueDate'), '%Y-%m-%d').date() if data.get('dueDate') else None
+            db.session.commit()
+            return task.json()
         else:
-            task = TasksModel(**data)
+            new_task = TasksModel(content=data['content'], dueDate=datetime.strptime(data.get('dueDate'), '%Y-%m-%d').date())
+            db.session.add(new_task)
+            db.session.commit()
+            return new_task.json(), 201
+            
+    def done(self, id):
+        task = TasksModel.query.get(id)
 
-        db.session.add(task)
+        if not task:
+            return redirect('/tasks')
+
+        task.done = not task.done
+
         db.session.commit()
-
-        return task.json()
+        return redirect('/tasks')
 
 api.add_resource(TasksView, '/tasks')
 api.add_resource(SingleTaskView, '/task/<int:id>')
