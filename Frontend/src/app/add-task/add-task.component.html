@@ -1,27 +1,33 @@
 <div class="container extra_container">
     <div class="row">
-        <p></p>
-        <div class="col">
-            <h2 class="">Add tasks...</h2>
-        </div>
-        <div class="col"></div>
-        <div class="col">
-            <div class="container text-end">
-                <button class="btn btn-primary"><a [routerLink]="['/list-tasks/']">List of tasks</a></button>
-            </div> 
-        </div>
-</div>
-
-<div class="container">
-
-    <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
-        <div class="row">
-            <div class="md-col-6 text-center" id="cnt">Content</div>
-            <div class="md-col-6"><input type="text" class="form-control" name="content" formControlName="content"></div>
-        </div>
+      <p></p>
+      <div class="col">
+        <h2 class="">Add tasks...</h2>
+      </div>
+      <div class="col"></div>
+      <div class="col">
+        <div class="container text-end">
+          <button class="btn btn-primary"><a [routerLink]="['/list-tasks/']">List of tasks</a></button>
+        </div> 
+      </div>
+    </div>
+  
+    <div class="container border bg-light">
+        <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off">
+          <div class="row align-items-center">
+            <div class="col-md-4 text-center" id="cnt">Content</div>
+            <div class="col-md-6"><input type="text" class="form-control" name="content" formControlName="content"></div>
+          </div>
+  
+          <div class="row align-items-center mt-3">
+            <div class="col-md-4 text-center" id="dud">Due Date</div>
+            <div class="col-md-6"><input type="date" class="form-control" name="dueDate" formControlName="dueDate"></div>
+          </div>
         
-        <div class="row">
-            <div class="md-col-4 text-center"><input type="submit" class="btn btn-warning" name="submit" size="10"></div>
-        </div>
-    </form>  
-</div>  
+          <div class="row align-items-center mt-3">
+            <div class="col-md-12 text-center"><input type="submit" class="btn btn-warning" name="submit"></div>
+          </div>
+        </form>  
+    </div>
+</div>
+  

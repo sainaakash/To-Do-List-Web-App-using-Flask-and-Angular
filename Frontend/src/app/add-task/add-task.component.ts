@@ -10,33 +10,29 @@ import { first } from 'rxjs';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent {
-  angForm : FormGroup;
+  angForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private route: Router,
+    private router: Router,
     private tasksService: TasksService
-    ) { 
-    
-      this.angForm = this.fb.group({
-        content: ['', Validators.required]
-      });
-  }
-
-  ngOnInit(): void {
-
-  }
-
-  postdata(forms:any){
-      this.tasksService.addTask(
-      this.angForm.value.content
-    )
-    .pipe(first()).subscribe(data =>{
-        this.route.navigate(['list-tasks']);
-    },
-    error => { 
-
+  ) { 
+    this.angForm = this.fb.group({
+      content: ['', Validators.required],
+      dueDate: ['', Validators.required]  
     });
-    //console.log(this.angForm.value)
+  }
+
+  postdata(angForm: FormGroup) {
+    this.tasksService.addTask(this.angForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate(['list-tasks']);
+        },
+        error => {
+          
+        }
+      );
   }
 }

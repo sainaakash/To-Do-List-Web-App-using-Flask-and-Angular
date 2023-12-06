@@ -12,16 +12,22 @@
         </div>
 </div>
 
-<div class="container">
+<div class="container border bg-light">
     <form [formGroup]="angForm" (ngSubmit)="editData(angForm)" autocomplete="off">
         <input type="hidden" name="id" formControlName="id">
-        <div class="row">
-            <div class="md-col-6 text-center" id="cnt">Content</div>
-            <div class="md-col-4"><input type="text" class="form-control" name="content" formControlName="content"></div>
+        
+        <div class="row align-items-center mt-3 ">
+            <div class="col-md-4 text-center" id="cnt">Content</div>
+            <div class="col-md-6"><input type="text" class="form-control" name="content" formControlName="content"></div>
         </div>
 
-        <div class="row">
-            <div class="md-col-4 text-center"><input type="submit" class="btn btn-warning" name="submit" value="Update"></div>
+        <div class="row align-items-center mt-3">
+            <div class="col-md-4 text-center" id="dud">Due Date</div>
+            <div class="col-md-6"><input type="date" class="form-control" name="dueDate" formControlName="dueDate"></div>
+        </div>
+
+        <div class="row align-items-center mt-3">
+            <div class="col-md-12 text-center"><input type="submit" class="btn btn-warning" name="submit" value="Update"></div>
         </div>
     </form>  
-</div>  
+</div>

@@ -16,16 +16,16 @@
 <div class="container">
 
     <div class="row p-3 border bg-light" id="thead">
-        <div class="col-md-4">Task No.</div>
-        <div class="col-md-4">Tasks</div>
+        <div class="col-md-2 text-center">Due Date</div>
+        <div class="col-md-6 text-center">Tasks</div>
         <div class="col-md-4 text-center">Actions</div>
     </div>
 </div>
 <div class="container">
     <div *ngFor="let t of tasks" id="cnt">
         <div class="row gy-5" id="">    
-            <div class="col-md-1 p-3 border bg-light">{{ t.id }}</div>
-            <div class="col-md-7 p-3 border bg-light">{{ t.content }}</div>
+            <div class="col-md-2 p-3 border bg-light text-center">{{ t.dueDate }}</div>
+            <div class="col-md-6 p-3 border bg-light">{{ t.content }}</div>
             <div class="col-md-4 p-3 border bg-light text-center">
                 
                 <button class="btn btn-warning btn-margin"><a [routerLink]="['/update-task/',t.id]">Edit</a></button>

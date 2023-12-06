@@ -14,12 +14,12 @@ export class TasksService {
     private httpClient:HttpClient
   ) { }
 
-  public addTask(content:any){
-    return this.httpClient.post<Tasks>(this.baseUrl+'tasks',{content})
-        .pipe(map((Tasks:any) => {
-          return Tasks;
-    }));
-  } 
+  public addTask(taskData: any) {
+    return this.httpClient.post<Tasks>(this.baseUrl + 'tasks', taskData)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
 
   public listTasks(){ 
     return this.httpClient.get<Tasks[]>(this.baseUrl+'tasks')

@@ -26,6 +26,7 @@ export class UpdateTaskComponent {
 
     this.angForm = this.fb.group({
       id: [''],
+      dueDate: [''],
       content: ['', Validators.required],
     });
 
