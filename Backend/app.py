@@ -29,7 +29,7 @@ class TasksView(Resource):
         due_date_str = data.get('dueDate')
         due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date() if due_date_str else None
 
-        new_task = TasksModel(content=data['content'], dueDate=due_date)
+        new_task = TasksModel(content=data['content'], dueDate=due_date, completed=data['completed'])
 
         db.session.add(new_task)
         db.session.commit()
@@ -62,24 +62,16 @@ class SingleTaskView(Resource):
         if task:
             task.content = data['content']
             task.dueDate = datetime.strptime(data.get('dueDate'), '%Y-%m-%d').date() if data.get('dueDate') else None
+            task.completed = data['completed']
+
             db.session.commit()
             return task.json()
         else:
-            new_task = TasksModel(content=data['content'], dueDate=datetime.strptime(data.get('dueDate'), '%Y-%m-%d').date())
+            new_task = TasksModel(content=data['content'], dueDate=datetime.strptime(data.get('dueDate'), '%Y-%m-%d').date(), completed=data['completed'])
+
             db.session.add(new_task)
             db.session.commit()
             return new_task.json(), 201
-            
-    def done(self, id):
-        task = TasksModel.query.get(id)
-
-        if not task:
-            return redirect('/tasks')
-
-        task.done = not task.done
-
-        db.session.commit()
-        return redirect('/tasks')
 
 api.add_resource(TasksView, '/tasks')
 api.add_resource(SingleTaskView, '/task/<int:id>')
