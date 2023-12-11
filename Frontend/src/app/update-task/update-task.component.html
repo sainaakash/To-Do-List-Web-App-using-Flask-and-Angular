@@ -1,33 +1,47 @@
 <div class="container extra_container">
     <div class="row">
-        <p></p>
-        <div class="col">
-            <h2>Update Task...</h2>
+      <p></p>
+      <div class="col">
+        <h2>Update Task...</h2>
+      </div>
+      <div class="col"></div>
+      <div class="col">
+        <div class="container text-end">
+          <button class="btn btn-primary">
+            <a [routerLink]="['/list-tasks/']">Back</a>
+          </button>
         </div>
-        <div class="col"></div>
-        <div class="col">
-            <div class="container text-end">
-                <button class="btn btn-primary"><a [routerLink]="['/list-tasks/']">Back</a></button>
-            </div> 
-        </div>
-</div>
-
-<div class="container border bg-light">
-    <form [formGroup]="angForm" (ngSubmit)="editData(angForm)" autocomplete="off">
+      </div>
+    </div>
+  
+    <div class="container border bg-light">
+      <form [formGroup]="angForm" (ngSubmit)="editData()" autocomplete="off">
         <input type="hidden" name="id" formControlName="id">
-        
-        <div class="row align-items-center mt-3 ">
-            <div class="col-md-4 text-center" id="cnt">Content</div>
-            <div class="col-md-6"><input type="text" class="form-control" name="content" formControlName="content"></div>
-        </div>
-
+  
         <div class="row align-items-center mt-3">
-            <div class="col-md-4 text-center" id="dud">Due Date</div>
-            <div class="col-md-6"><input type="date" class="form-control" name="dueDate" formControlName="dueDate"></div>
+          <div class="col-md-4 text-center" id="cnt">Content</div>
+          <div class="col-md-6"><input type="text" class="form-control" name="content" formControlName="content"></div>
         </div>
-
+  
         <div class="row align-items-center mt-3">
-            <div class="col-md-12 text-center"><input type="submit" class="btn btn-warning" name="submit" value="Update"></div>
+          <div class="col-md-4 text-center" id="dud">Due Date</div>
+          <div class="col-md-6"><input type="date" class="form-control" name="dueDate" formControlName="dueDate"></div>
         </div>
-    </form>  
-</div>
+  
+        <div *ngIf="false" class="row align-items-center mt-3" id="comp">
+            <div class="col-md-4 text-center">Completed</div>
+            <div class="col-md-6">
+              <select class="form-control" name="completed" formControlName="completed">
+                <option [ngValue]="false">No</option>
+                <option [ngValue]="true">Yes</option>
+              </select>
+            </div>
+          </div>
+  
+        <div class="row align-items-center mt-3">
+          <div class="col-md-12 text-center"><input type="submit" class="btn btn-warning" name="submit" value="Update"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
