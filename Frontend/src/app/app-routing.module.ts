@@ -6,6 +6,7 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'list-tasks', pathMatch: 'full'},
   { path: 'add-task', component: AddTaskComponent},
   { path: 'list-tasks', component: ListTasksComponent},
   { path: 'update-task/:id', component: UpdateTaskComponent}
