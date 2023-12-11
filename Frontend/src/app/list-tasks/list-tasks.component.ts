@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TasksService } from '../tasks.service';
 import { Router } from '@angular/router';
+import { Tasks } from '../tasks.model';
 
 @Component({
   selector: 'app-list-tasks',
@@ -37,5 +38,11 @@ export class ListTasksComponent {
         }, 100);
       });
   }
+
+  markAsComplete(task: Tasks): void {
+
+    task.completed = !task.completed;
+    
+}
 
 }

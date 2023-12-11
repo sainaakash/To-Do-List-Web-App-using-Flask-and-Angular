@@ -19,11 +19,12 @@ export class AddTaskComponent {
   ) { 
     this.angForm = this.fb.group({
       content: ['', Validators.required],
-      dueDate: ['', Validators.required]  
+      dueDate: ['', Validators.required],
+      completed: [false, Validators.required]  
     });
   }
 
-  postdata(angForm: FormGroup) {
+  postdata() {
     this.tasksService.addTask(this.angForm.value)
       .pipe(first())
       .subscribe(
@@ -31,7 +32,8 @@ export class AddTaskComponent {
           this.router.navigate(['list-tasks']);
         },
         error => {
-          
+          console.error('Error:', error);
+          // You can add more meaningful error handling here
         }
       );
   }

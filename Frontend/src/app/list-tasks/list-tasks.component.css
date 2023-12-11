@@ -14,3 +14,8 @@ a:link, a:visited {
 #thead {
   font-weight: bold;
 }
+
+.completed {
+  text-decoration: line-through;
+  color: #8888;
+}
