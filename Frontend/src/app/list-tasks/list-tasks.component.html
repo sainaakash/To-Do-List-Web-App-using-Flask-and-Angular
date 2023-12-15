@@ -27,11 +27,13 @@
             <div class="col-md-2 p-3 border bg-light text-center">{{ t.dueDate | date:'dd-MM-yyyy' }}</div>
             <div class="col-md-6 p-3 border bg-light" [class.completed]="t.completed">{{ t.content }}</div>
             <div class="col-md-4 p-3 border bg-light text-center">
-                <button (click)="markAsComplete(t)" class="btn btn-success btn-margin">Mark as Complete</button>
-                <button class="btn btn-warning btn-margin"><a [routerLink]="['/update-task/',t.id]">Edit</a></button>
+                <button *ngIf="!t.completed" (click)="markAsComplete(t)" class="btn btn-success btn-margin">Mark as Complete</button>
+                <button *ngIf="!t.completed" class="btn btn-warning btn-margin"><a [routerLink]="['/update-task/', t.id]">Edit</a></button>
                 <button (click)="deleteTask(t.id)" class="btn btn-danger btn-margin">Delete</button>
             </div>
         </div>
     </div>
 </div>
+
+
 

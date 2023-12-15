@@ -39,10 +39,20 @@ export class ListTasksComponent {
       });
   }
 
-  markAsComplete(task: Tasks): void {
+  markAsComplete(task: any) {
+    task.completed = true;
 
-    task.completed = !task.completed;
-    
-}
+    this.tasksService.markTaskAsComplete(task.id)
+      .subscribe(
+        response => {
+          console.log('Task marked as complete successfully:', response);
+          
+        },
+        error => {
+          console.error('Error marking task as complete:', error);
+          
+        }
+      );
+  }
 
 }

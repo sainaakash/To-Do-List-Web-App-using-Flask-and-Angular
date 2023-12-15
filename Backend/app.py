@@ -73,8 +73,20 @@ class SingleTaskView(Resource):
             db.session.commit()
             return new_task.json(), 201
 
+class MarkCompleteView(Resource):
+    def put(self, id):
+        task = TasksModel.query.get(id)
+
+        if task:
+            task.completed = True
+            db.session.commit()
+            return {'message': 'Task marked as complete'}
+        else:
+            return {'message': 'Task not found'}, 404
+
 api.add_resource(TasksView, '/tasks')
 api.add_resource(SingleTaskView, '/task/<int:id>')
+api.add_resource(MarkCompleteView, '/task/mark_complete/<int:id>')
 
 if __name__ == '__main__':
     app.run(debug=True)

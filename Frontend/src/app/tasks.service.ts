@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Tasks } from './tasks.model';
 
 @Injectable({
@@ -36,4 +36,11 @@ export class TasksService {
   updateTask(id: any, tasks: Tasks) {
     return this.httpClient.put<Tasks[]>(this.baseUrl+'task/'+id, tasks);
   }
+
+  markTaskAsComplete(taskId: number): Observable<any> {
+    const url = `${this.baseUrl}/task/mark_complete/${taskId}`;
+
+    return this.httpClient.put(url, {});
+  }
 }
+
