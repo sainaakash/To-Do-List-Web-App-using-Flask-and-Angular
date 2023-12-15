@@ -19,3 +19,11 @@ a:link, a:visited {
   text-decoration: line-through;
   color: #8888;
 }
+
+#duedate {
+  margin-left: 40px;
+}
+
+#actions {
+  margin-left: 20px;
+}

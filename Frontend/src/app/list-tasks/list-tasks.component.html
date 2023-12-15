@@ -14,16 +14,15 @@
 </div>
 <p></p>
 <div class="container">
-
     <div class="row p-3 border bg-light" id="thead">
-        <div class="col-md-2 text-center">Due Date</div>
-        <div class="col-md-6 text-center">Tasks</div>
-        <div class="col-md-4 text-center">Actions</div>
+        <div class="col-md-1 text-center" id="duedate">Due Date</div>
+        <div class="col-md-7 text-center">Tasks</div>
+        <div class="col-md-3 text-center" id="actions">Actions</div>
     </div>
 </div>
 <div class="container">
     <div *ngFor="let t of tasks" id="cnt">
-        <div class="row gy-5" id="">    
+        <div class="row gy-5">    
             <div class="col-md-2 p-3 border bg-light text-center">{{ t.dueDate | date:'dd-MM-yyyy' }}</div>
             <div class="col-md-6 p-3 border bg-light" [class.completed]="t.completed">{{ t.content }}</div>
             <div class="col-md-4 p-3 border bg-light text-center">
